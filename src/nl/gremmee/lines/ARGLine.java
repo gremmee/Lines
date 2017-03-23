@@ -32,9 +32,7 @@ public class ARGLine {
     }
 
     private Color getCalculatedColor(float c, int aClickCount) {
-        System.out.println(aClickCount);
         int colorComponent = aClickCount % 3;
-        System.out.println(colorComponent);
         int dr = 0;
         int dg = 0;
         int db = 0;
@@ -55,9 +53,7 @@ public class ARGLine {
         int r = ((int) c + dr) % 255;
         int g = ((int) c + dg) % 255;
         int b = ((int) c + db) % 255;
-        System.out.println("" + r + " " + g + " " + b);
         Color color = new Color(r, g, b);
-        System.out.println(color);
         return color;
     }
 
