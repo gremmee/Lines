@@ -9,9 +9,11 @@ public class Utils {
         return (random.nextFloat() * (aMax - aMin)) + aMin;
     }
 
-    public static final float map(float aMappedValue, float aInboundMin, float aInboundMax, float aOutboundMin,
-            float aOutboundMax) {
-        return aOutboundMin
-                + ((aOutboundMax - aOutboundMin) * ((aMappedValue - aInboundMin) / (aInboundMax - aInboundMin)));
+    public static final float map(float mappedValue, //
+            float inboundMin, //
+            float inboundMax, //
+            float outboundMin, //
+            float outboundMax) {
+        return outboundMin + ((outboundMax - outboundMin) * ((mappedValue - inboundMin) / (inboundMax - inboundMin)));
     }
 }

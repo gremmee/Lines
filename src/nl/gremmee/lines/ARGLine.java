@@ -18,7 +18,6 @@ public class ARGLine {
     float z;
 
     private ID id;
-    private int color;
 
     private int speed;
 
@@ -32,10 +31,40 @@ public class ARGLine {
         y = (r * (float) Math.cos(a));
     }
 
+    private Color getCalculatedColor(float c, int aClickCount) {
+        System.out.println(aClickCount);
+        int colorComponent = aClickCount % 3;
+        System.out.println(colorComponent);
+        int dr = 0;
+        int dg = 0;
+        int db = 0;
+        switch (colorComponent) {
+            case 0:
+                dr += aClickCount;
+                break;
+            case 1:
+                dg += aClickCount;
+                break;
+            case 2:
+                db += aClickCount;
+                break;
+
+            default:
+                break;
+        }
+        int r = ((int) c + dr) % 255;
+        int g = ((int) c + dg) % 255;
+        int b = ((int) c + db) % 255;
+        System.out.println("" + r + " " + g + " " + b);
+        Color color = new Color(r, g, b);
+        System.out.println(color);
+        return color;
+    }
+
     public void doRender(Graphics aGraphics) {
-        color = Window.getMouseY();
-        float c = Utils.map(color, 0, Lines.HEIGHT, 64, 255);
-        aGraphics.setColor(new Color((int) c, (int) c, (int) c));
+        final int mouseY = Window.getMouseY();
+        float c = Utils.map(mouseY, 0, Lines.HEIGHT, 64, 255);
+        aGraphics.setColor(getCalculatedColor(c, Window.leftClickCount));
 
         Graphics2D g2 = (Graphics2D) aGraphics;
         g2.setStroke(new BasicStroke(3));
